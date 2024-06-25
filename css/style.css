@@ -1,0 +1,812 @@
+/* common */
+body, html {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.inner_content{
+    width: 1200px;
+}
+.section{
+    width: 100%;
+    height: 100vh;
+}
+.title{
+    position: absolute;
+    top: 100px;
+    left: calc(50%);
+    transform: translateX(-50%);
+}
+h1.fontMain{
+    font-family: "klavika";
+    font-size: 30px;
+    font-weight: 800;
+    color: #fff;
+}
+button{
+    cursor: pointer;
+}
+
+/* 헤더영역 fixed */
+.all{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+header{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+}
+header:before{
+    content: "";
+    width: 100%;
+    height: 600px;
+    background:#000000ca;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: none;
+}
+header.on:before{
+    display: block;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.gnb{
+    display: flex;
+    align-items: center;
+}
+.langs{
+    position: relative;
+}
+.lang{
+    color: #fff;
+    margin-right: 20px;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 50%;
+    display: block;
+    position: relative;
+}
+.lang_link{
+    overflow: hidden;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    color: #fff;
+    height: 0;
+    transition: all 0.5s ease 0s;
+}
+.langs:hover .lang_link{
+    height: 100px;
+}
+.langs:hover .lang{
+    border-color: transparent;
+}
+/* .lang:hover ~ .lang_link{
+    height: 100px;
+} */
+.lang_link>li{
+    margin-bottom: 5px;
+}
+/* .lang::after{
+    content: "▼";
+    font-size: 12px;
+    position: absolute;
+    top: 30%;
+    left: 90%;
+    display: none;
+}
+.lang:hover:after{
+    content: "▼";
+    font-size: 12px;
+    border: 1px solid red;
+    position: absolute;
+    top: 30%;
+    left: 90%;
+    display: block;
+} */
+.gnb_list{
+    height: 0;
+    position: fixed;
+    top: 100px;
+    left: calc(50% - 600px);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.2s ease 0s;
+    overflow: hidden;
+}
+.gnb_list.on{
+    height: 500px;
+}
+.gnb_list>li>a{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.gnb_list>li.long>a{
+    width: 200px;
+}
+.gnb_list>li>ul>li>a{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    font-weight: 300;
+    justify-content: center;
+}
+
+/* 배너영역 */
+/* .video-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+.video-background iframe{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; 
+    object-fit: cover;
+} */
+.banner{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.station{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+.blackcover{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #00000075;
+}
+.train{
+    width: 300%;
+    height: 100vh;
+    display: flex;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+}
+.train>li{
+    flex: 1;
+    position: relative;
+}
+.train>li video{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    line-height: 0;
+}
+.station button{
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid #ffa200;
+    z-index: 100;
+    position: absolute;
+    background: none;
+    color: #fff;
+    font-size: large;
+}
+.station button:hover{
+    background: #ffa200;
+    color: #000;
+}
+.station button:first-of-type{
+    top: 50%;
+    left: 120px;
+}
+.station button:last-of-type{
+    top: 50%;
+    right: 120px;
+}
+.banner_info{
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 500;
+}
+.banner_info>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    opacity: 0;
+    transition: all 1s ease 0s;
+}
+.banner_info>div.on{
+    opacity: 1;
+}
+.banner_info>div h3{
+    font-family: "klavika";
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 28px;
+}
+.banner_info>div h2{
+    font-size: 48px;
+    font-weight: bold;
+}
+.banner_info>div:after{
+    content: "";
+    width: 10px;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    left: calc(50% - 10px);
+    border-right: 1px solid #fff;
+    transition: all 1s ease 0s;
+}
+
+/* 아티스트 영역 */
+.artist{
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    position: relative;
+}
+.artistLeft{
+    position: relative;
+    width: 50%;
+    height: 100vh;
+}
+.tap_artist{
+    width: 450px;
+    height: 100px;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 0 ;
+}
+.tap_artist li{
+    flex: 1;
+    height: 36px;
+    font-size: 18px;
+    border: 1px solid white;
+    border-radius: 25px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.tap_artist li:nth-of-type(4),
+.tap_artist li:last-of-type{
+    margin-right: 0;
+    margin-bottom: 0;
+}
+.tap_artist li a{
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 5px 20px;
+    box-sizing: border-box;
+    text-align: center;
+    text-wrap: nowrap;
+}
+.tap_artist li.on{
+    background: #ffa200;
+    color: #fff;
+    border: none;
+}
+.artist_name{
+    min-width: 450px;
+    position: absolute;
+    top: 40%;
+    left: 15%;
+}
+.artist_name>li{
+    height: 0;
+    opacity: 0;
+    transition: all 0.5s ease 0.1s;
+}
+.artist_name>li.on{
+    /* min-height: 150px; */
+    opacity: 1;
+}
+.artist_name>li>h1{
+    font-family: "klavika";
+    font-size: 150px;
+}
+.artist_name>li:nth-of-type(6)>h1,
+.artist_name>li:nth-of-type(7)>h1{
+    font-size: 110px;
+    text-wrap: nowrap;
+    padding-top: 10px;
+    min-height: 172px;
+    display: flex;
+    align-items: center;
+}
+.artist_name>li>p{
+    font-size: 40px;
+    font-weight: 800;
+    text-wrap: nowrap;
+    word-break: keep-all;
+}
+.artist_link{
+    background: #262626;
+    border-radius: 25px;
+    padding: 15px 40px;
+    position: absolute;
+    bottom: 20%;
+    left: 15%;
+}
+.artist_link>a::after{
+    content: "→";
+    margin-left: 10px;
+    color: #ffa200;
+}
+
+/* 아티스트 슬라이드 영역 */
+.artistRight{
+    width: 50%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.slideshow{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.carousel{
+    width: 45rem;
+    height: 45rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-shrink: 0;
+    top: 0;
+    right: -40%;
+    transition:all 1s ease 0s;
+}
+.slide{
+    width: 20rem;
+    height: 20rem;
+    position: absolute;
+    opacity: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+}
+/* >img 빼면 hover 적용 안됨? */
+.slide>img:hover{
+    transform: scale(1.2);
+    transition: all 0.3s ease-out 0s;
+}
+.slide.on{
+    opacity: 1;
+}
+/* 오렌지색 border 크게 배치 */
+.slide.on img{
+    padding: 10px;
+    transform: scale(1.5);
+    border: 1px solid #ffa200;
+    border-radius: 50%;
+    transition: transform 0.5s ease 0s;
+    position: relative;
+}
+.slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Positioning slides around the circle */
+.slide.s1 { transform: rotate(180deg) translateX(35rem) rotate(-180deg); }
+.slide.s2 { transform: rotate(231.42deg) translateX(35rem) rotate(-231.42deg); }
+.slide.s3 { transform: rotate(282.84deg) translateX(35rem) rotate(-282.84deg); }
+.slide.s4 { transform: rotate(334.26deg) translateX(35rem) rotate(-334.26deg); }
+.slide.s5 { transform: rotate(25.68deg) translateX(35rem) rotate(-25.68deg); }
+.slide.s6 { transform: rotate(77.1deg) translateX(35rem) rotate(-77.1deg); }
+.slide.s7 { transform: rotate(128.52deg) translateX(35rem) rotate(-128.52deg); }
+
+.carousel_btn button{
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid #ffa200;
+    z-index: 100;
+    position: absolute;
+    background: none;
+    color: #fff;
+    font-size: large;
+}
+.carousel_btn button.on{
+    background: #ffa200;
+    color: #000;
+}
+.carousel_btn button:first-of-type{
+    bottom: 10%;
+    left: 100px;
+}
+.carousel_btn button:last-of-type{
+    bottom: 10%;
+    left: 200px;
+}
+
+/* 회사 cl 영역 */
+.cl{
+    width: 100%;
+    height: 400vh;
+    position: relative;
+    overflow: hidden;
+}
+.building{
+    width: 100%;
+    height: 400vh;
+    position: relative;
+    overflow: hidden;
+}
+.elv{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+}
+.elv.fixed{
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+.elv.bottom{
+    position: absolute;
+    top: auto;
+    bottom: 0;
+}
+.scroll{
+    position: relative;
+}
+.scr_cir{
+    width: 80%;
+    height: 80vh;
+    margin: 0 auto;
+    position: relative;
+}
+.scr_cir>li{
+    border: 1px solid rgb(220, 220, 220);
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #f7f7f7;
+    color: #000;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    top: calc(50% - 125px);
+    left: calc(50% - 125px);
+    opacity: 1;
+}
+.scr_cir>li.cir1{
+    z-index: 2;
+    transform:translateX(-130%);
+}
+.scr_cir>li.cir3{
+    z-index: -1;
+    transform:translateX(130%);
+}
+.scr_cir>li.cir2.ball1{
+    width: 120px;
+    height: 300px;
+}
+.scr_cir>li.cir2.ball2{
+    width: 280px;
+    height: 150px;
+}
+
+
+
+
+.scroll>h2{
+    font-family: "klavika";
+    font-weight: bold;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: all .5s ease 0s;
+}
+.scroll>h2.on{
+    opacity: 1;
+}
+.mousescroll{
+    width: 30px;
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mousescroll img{
+    width: 50%;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+.mousescroll>p{
+    font-family: "klavika";
+    font-size: 14px;
+}
+
+
+/* 앨범 영역 */
+.album{
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    position: relative;
+}
+.album_list {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+}
+.album_list button:hover{
+    background: #ffa200;
+    color: #000;
+}
+.album_station{
+    width: 90%;
+    height: 85%;
+    /* margin: 0 auto; */
+}
+/* .album_cover{
+    width: 90%;
+    height: 80%;
+    position: absolute;
+    bottom: 10%;
+    left: calc(50% - 45%);
+    display: flex;
+} */
+.album_cover>li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 100;
+}
+/* .album_cover>li>a{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.album_cover>li>a img{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+.album_back{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    z-index: -1;
+    opacity: 0.5;
+    transition: all .5s ease 0s;
+}
+.album_cover>li.on .album_back{
+    position: absolute;
+    top: 30%;
+    right: 0;
+    transform: none;
+}
+.album_back img{
+    border-radius: 50%;
+}
+.album_info{
+    width: 50%;
+    height: 25%;
+    position: absolute;
+    bottom: 10%;
+    left: calc(50% - 25%);
+}
+.album_info>li{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    display: none;
+}
+.album_info>li.on{
+    display: flex;
+}
+.album_info>li h3{
+    font-size: 24px;
+    color: #ffa200;
+    margin: 15px 0;
+    font-weight: 500;
+}
+.album_info>li p{
+    font-weight: 300;
+    line-height: 35px;
+}
+.album_list button{ 
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid #ffa200;
+    z-index: 500;
+    position: absolute;
+    background: none;
+    color: #fff;
+    font-size: large;
+    cursor: pointer;
+}
+.album_list .album_btn .btn_lt{
+    bottom: 20%;
+    left: 280px;
+    top: auto;
+}
+.album_list .album_btn .btn_rt{
+    bottom: 20%;
+    right: 280px;
+    top: auto;
+}
+.album_btn .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    display: none;
+}
+.album_btn .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    display: none;
+}
+
+/* 뉴스(공지사항) 영역 */
+.news{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.news .fontMain{
+    color: #000;
+}
+.news_list{
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+.news_list>li{
+    text-align: center;
+    flex: 1;
+    cursor: pointer;
+}
+.news_h{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.news_h h1{
+    width: 100px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    background: #ffa200;
+    color: #fff;
+    transition: all 1s ease 0s;
+}
+.news_h:hover h1{
+    opacity: 1;
+}
+.news_h img{
+    transition: all .4s ease 0s;
+}
+.news_h:hover img{
+    filter: grayscale(1);
+    scale: 1.1;
+}
+.news_list .news_info{
+    text-align: left;
+    word-break: keep-all;
+    padding: 0 50px;
+}
+.news_info h2{
+    font-size: 20px;
+    font-weight: bold;
+}
+.news_info p{
+    margin: 10px 0;
+    color: #3b3b3b;
+}
+.news_info span{
+    color: #c0c0c0;
+    font-size: 12px;
+}
+footer{
+    background: #000;
+    width: 100%;
+    height: 25vh;
+    color: #ffffff70;
+}
+footer>.inner{
+    width: 90%;
+    height: 25vh;
+    margin: 0 auto;
+    padding: 50px 0;
+    box-sizing: border-box;
+}
+.foot_list{
+    display: flex;
+    justify-content: space-between;
+    color: #ffffff70;
+}
+.foot_bottom{
+    display: flex;
+    margin: 50px 0
+}
+.foot_bottom>h1{
+    flex: 15%;
+}
+.foot_right{
+    flex: 85%;
+}
+.foot_menu{
+    display: flex;
+    border-bottom: 1px solid #ffffff70;
+    justify-content: space-between;
+}
+.sns{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 10%;
+}
