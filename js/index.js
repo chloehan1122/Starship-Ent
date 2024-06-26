@@ -259,6 +259,21 @@ $(document).ready(function(){
         artistName(carousel_count)
     });
 
+    // 아티스트 슬라이드 탭/모바일 버전
+    let swiper1 = new Swiper(".station_artist", {
+        slidesPerView: 2,
+        spaceBetween: 30,
+        centeredSlides: false,
+        loop: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        // pagination: {
+        //   el: ".swiper-pagination",
+        //   clickable: true,
+        // },
+      });
 
 
 
@@ -293,24 +308,23 @@ $(document).ready(function(){
         },
       });
             
-      swiper.on('slideChangeTransitionEnd', function () {
-        let slideindex =this.realIndex
-        // console.log(slideindex)
+    //   swiper.on('slideChangeTransitionEnd', function () {
+    //     let slideindex =this.realIndex
+    //     // console.log(slideindex)
 
-            $(".album_cover > li").removeClass("on");
-            // $(".album_cover > li").eq(slideindex+2).addClass("on");
-            $(".album_info > li").removeClass("on");
-            // $(".album_info > li").eq(slideindex+2).addClass("on");
+    //         $(".album_cover > li").removeClass("on");
+    //         // $(".album_cover > li").eq(slideindex+2).addClass("on");
+    //         $(".album_info > li").removeClass("on");
+    //         // $(".album_info > li").eq(slideindex+2).addClass("on");
         
-            idx = slideindex + 2
-            if(idx >9)
-            {
-                idx = idx - 10
-            }
-
-            console.log(idx)
-            $(`[data-swiper-slide-index='${idx}']`).addClass("on")
-    })
+    //         idx = slideindex + 2
+    //         if(idx >9)
+    //         {
+    //             idx = idx - 10
+    //         }
+    //         console.log(idx)
+    //         $(`[data-swiper-slide-index='${idx}']`).addClass("on")
+    // })
 
 
       $(".album_cover>li").click(function(){
@@ -331,11 +345,11 @@ $(document).ready(function(){
 
         if (delta > 0) {
             // 휠내렸을때
-            console.log('Scrolling down in ' + this.id);
+            // console.log('Scrolling down in ' + this.id);
             $("html,body").stop().animate({"scrollTop":$(".artist").offset().top},600)
         } else {
             // 휠올렸을때
-            console.log('Scrolling up in ' + this.id);
+            // console.log('Scrolling up in ' + this.id);
         }
         // Prevent default scrolling behavior
         event.preventDefault();
@@ -347,12 +361,12 @@ $(document).ready(function(){
 
         if (delta > 0) {
             // 휠내렸을때
-            console.log('Scrolling down in ' + this.id);
+            // console.log('Scrolling down in ' + this.id);
             $("html,body").stop().animate({"scrollTop":$(".cl").offset().top},600)
         } else {
             // 휠올렸을때
             $("html,body").stop().animate({"scrollTop":$(".banner").offset().top},600)
-            console.log('Scrolling up in ' + this.id);
+            // console.log('Scrolling up in ' + this.id);
         }
         // Prevent default scrolling behavior
         event.preventDefault();
@@ -365,7 +379,7 @@ $(document).ready(function(){
         if (delta > 0) {
             event.preventDefault();
             // 휠내렸을때
-            console.log('Scrolling down in ' + this.id);
+            // console.log('Scrolling down in ' + this.id);
             $("html,body").stop().animate({"scrollTop":$(".news").offset().top},600)
         } else {
             // 휠올렸을때
@@ -387,7 +401,7 @@ $(document).ready(function(){
         } else {
             // 휠올렸을때
             $("html,body").stop().animate({"scrollTop":$(".album").offset().top},600)
-            console.log('Scrolling up in ' + this.id);
+            // console.log('Scrolling up in ' + this.id);
         }
         // Prevent default scrolling behavior
         event.preventDefault();
