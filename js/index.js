@@ -261,18 +261,14 @@ $(document).ready(function(){
 
     // 아티스트 슬라이드 탭/모바일 버전
     let swiper1 = new Swiper(".station_artist", {
-        slidesPerView: 2,
-        spaceBetween: 30,
-        centeredSlides: false,
+        slidesPerView: 2.5,
+        // spaceBetween: 30,
+        centeredSlides: true,
         loop: true,
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           },
-        // pagination: {
-        //   el: ".swiper-pagination",
-        //   clickable: true,
-        // },
       });
 
 
@@ -305,7 +301,11 @@ $(document).ready(function(){
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
-        },
+          },
+        pagination: {
+            el: ".swiper-pagination",
+            type: "fraction",
+        }
       });
             
       swiper.on('slideChangeTransitionEnd', function () {

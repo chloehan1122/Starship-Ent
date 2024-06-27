@@ -819,6 +819,7 @@ footer>.inner{
         background: #000;
         color: #fff;
     }
+    .station_btn{display: none;}
     .artistLeft{
         position: relative;
         width: 100%;
@@ -834,16 +835,20 @@ footer>.inner{
         padding:unset;
         transform: translateX(-50%);
     }
+    .tap_artist li:nth-of-type(4){
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
     .artistRight {
         width: 100%;
-        height: auto;
+        /* height: auto; */
         position: absolute;
         display: flex;
-        /* align-items: center; */
-        bottom: 100px;
+        align-items: center;
+        bottom: 0;
         right: 0;
         overflow: hidden;
-        top: unset;
+        top: 100px;
     }
     .station_artist{
         width: 100%;
@@ -854,6 +859,17 @@ footer>.inner{
     }
     .train_artist{
         /* display: flex; */
+    }
+    .train_artist>li img{
+        transform: scale(0.8);
+        transition: transform 0.5s ease 0s;
+    }
+    .train_artist>li.on img{
+        padding: 10px;
+        transform: scale(1.2);
+        border: 1px solid #ffa200;
+        border-radius: 50%;
+        transition: transform 0.5s ease 0s;
     }
     .train_artist .swiper-wrapper {
         position: relative;
@@ -868,11 +884,12 @@ footer>.inner{
     }
     .station_artist .carousel_btn{
         position: relative;
+        display: none;
     }
     .station_artist .carousel_btn button.btn_lt{
         position: absolute;
         top: 70px;
-        left: 20px;
+        left: 24%;
     }
     .station_artist .swiper-button-next:after{
         content: '';
@@ -883,9 +900,162 @@ footer>.inner{
     .station_artist .carousel_btn button.btn_rt{
         position: absolute;
         top: 70px;
-        left: 320px;
+        left: 65%;
     }
 }
 
 /* mobile */
-@media (max-width:767px){}
+@media (max-width:767px){
+    header {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        padding:unset;
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100000;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+    }
+    .logo a{
+        display: block;
+        width: 50%;
+    }
+    .lang {
+        display: none;
+        /* color: #fff;
+        margin-right: 20px;
+        border: 1px solid white;
+        padding: 10px;
+        border-radius: 50%;
+        display: flex;
+        position: relative;
+        width: 10px;
+        height: 10px;
+        font-size: 14px;
+        justify-content: center;
+        align-items: center; */
+    }
+    a.btn_gnb{
+        display: block;
+        width: 25px;
+        margin-right: 15px;
+    }
+    .station_btn{display: none;}
+    .artist{display: none;}
+    .artist_mo{
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background: #000;
+        color: #fff;
+    }
+    .artistLeft{
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .tap_artist {
+        width: 100%;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: unset;
+        transform: translateX(-50%);
+    }
+    .tap_artist li {
+        flex: none;
+        height: 28px;
+        font-size: 14px;
+        border: 1px solid white;
+        border-radius: 25px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .tap_artist li a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        padding: 4px 20px;
+        box-sizing: border-box;
+        text-align: center;
+        text-wrap: nowrap;
+    }
+    .tap_artist li:nth-of-type(4){
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .artistRight {
+        width: 100%;
+        /* height: auto; */
+        position: absolute;
+        display: flex;
+        align-items: center;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+        top: 100px;
+    }
+    .station_artist{
+        width: 100%;
+        height: auto;
+    }
+    .station_artist.swiper {
+        overflow: visible;
+    }
+    .train_artist{
+        /* display: flex; */
+    }
+    .train_artist>li img{
+        transform: scale(0.8);
+        transition: transform 0.5s ease 0s;
+    }
+    .train_artist>li.on img{
+        padding: 10px;
+        transform: scale(1.2);
+        border: 1px solid #ffa200;
+        border-radius: 50%;
+        transition: transform 0.5s ease 0s;
+    }
+    .train_artist .swiper-wrapper {
+        position: relative;
+        width: 200px;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        transition-property: transform;
+        transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
+        box-sizing: content-box;
+        align-items: center;
+    }
+    .station_artist .carousel_btn{
+        position: relative;
+        display: none;
+    }
+    /* .station_artist .carousel_btn button.btn_lt{
+        position: absolute;
+        top: 70px;
+        left: 24%;
+    }
+    .station_artist .swiper-button-next:after{
+        content: '';
+    }
+    .station_artist .swiper-button-prev:after{
+        content: '';
+    }
+    .station_artist .carousel_btn button.btn_rt{
+        position: absolute;
+        top: 70px;
+        left: 65%;
+    } */
+}
