@@ -308,104 +308,139 @@ $(document).ready(function(){
         },
       });
             
-    //   swiper.on('slideChangeTransitionEnd', function () {
-    //     let slideindex =this.realIndex
-    //     // console.log(slideindex)
+      swiper.on('slideChangeTransitionEnd', function () {
+        let slideindex =this.realIndex
+        // console.log(slideindex)
 
-    //         $(".album_cover > li").removeClass("on");
-    //         // $(".album_cover > li").eq(slideindex+2).addClass("on");
-    //         $(".album_info > li").removeClass("on");
-    //         // $(".album_info > li").eq(slideindex+2).addClass("on");
+            $(".album_cover > li").removeClass("on");
+            // $(".album_cover > li").eq(slideindex+2).addClass("on");
+            $(".album_info > li").removeClass("on");
+            // $(".album_info > li").eq(slideindex+2).addClass("on");
         
-    //         idx = slideindex + 2
-    //         if(idx >9)
-    //         {
-    //             idx = idx - 10
-    //         }
-    //         console.log(idx)
-    //         $(`[data-swiper-slide-index='${idx}']`).addClass("on")
+            idx = slideindex
+            if(idx >9)
+            {
+                idx = idx - 10
+            }
+            console.log(idx)
+            $(`[data-swiper-slide-index='${idx}']`).addClass("on")
+    })
+
+    // swiper.on('click', function(swiper, event) {
+    //     let clickedSlide = swiper.clickedSlide;
+    //     if (clickedSlide) {
+            
+    //         swiper.slideTo(index);
+    //     }
     // })
+
+
+    // swiper.on('click', function () {
+    //     const clickedSlide = swiper.clickedSlide;
+    //     if (clickedSlide) {
+    //         const realIndex = clickedSlide.getAttribute('data-swiper-slide-index');
+    //         swiper.slideToLoop(realIndex);
+    //         swiper.slideTo(index);
+    //     }
+    // });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       $(".album_cover>li").click(function(){
           $(".album_cover>li").removeClass("on");
           $(this).addClass("on");
-          let cover_idx = $(this).index();
+          let coveridx = $(this).attr("data-swiper-slide-index")
+        //   console.log(coveridx)
           $(".album_info>li").removeClass("on");
-          $(".album_info>li").eq(cover_idx).addClass("on");
+          $(`[data-swiper-slide-index='${coveridx}']`).addClass("on")
 
-          swiper.slideTo(cover_idx); // 이동할 슬라이드 인덱스 전달
+        //   let cover_idx = $(this).index();
+         
+        //   $(".album_info>li").eq(cover_idx).addClass("on");
+
+        //   swiper.slideTo(cover_idx); // 이동할 슬라이드 인덱스 전달
         });
 
 
     // 휠 애니메이션 적용
-    $('.banner').on('wheel', function(event){
-        var originalEvent = event.originalEvent;
-        var delta = originalEvent.deltaY || -originalEvent.wheelDelta;
+    // $('.banner').on('wheel', function(event){
+    //     var originalEvent = event.originalEvent;
+    //     var delta = originalEvent.deltaY || -originalEvent.wheelDelta;
 
-        if (delta > 0) {
-            // 휠내렸을때
-            // console.log('Scrolling down in ' + this.id);
-            $("html,body").stop().animate({"scrollTop":$(".artist").offset().top},600)
-        } else {
-            // 휠올렸을때
-            // console.log('Scrolling up in ' + this.id);
-        }
-        // Prevent default scrolling behavior
-        event.preventDefault();
-    });
+    //     if (delta > 0) {
+    //         // 휠내렸을때
+    //         // console.log('Scrolling down in ' + this.id);
+    //         $("html,body").stop().animate({"scrollTop":$(".artist").offset().top},600)
+    //     } else {
+    //         // 휠올렸을때
+    //         // console.log('Scrolling up in ' + this.id);
+    //     }
+    //     // Prevent default scrolling behavior
+    //     event.preventDefault();
+    // });
 
-    $('.artist').on('wheel', function(event){
-        var originalEvent = event.originalEvent;
-        var delta = originalEvent.deltaY || -originalEvent.wheelDelta;
+    // $('.artist').on('wheel', function(event){
+    //     var originalEvent = event.originalEvent;
+    //     var delta = originalEvent.deltaY || -originalEvent.wheelDelta;
 
-        if (delta > 0) {
-            // 휠내렸을때
-            // console.log('Scrolling down in ' + this.id);
-            $("html,body").stop().animate({"scrollTop":$(".cl").offset().top},600)
-        } else {
-            // 휠올렸을때
-            $("html,body").stop().animate({"scrollTop":$(".banner").offset().top},600)
-            // console.log('Scrolling up in ' + this.id);
-        }
-        // Prevent default scrolling behavior
-        event.preventDefault();
-    });
+    //     if (delta > 0) {
+    //         // 휠내렸을때
+    //         // console.log('Scrolling down in ' + this.id);
+    //         $("html,body").stop().animate({"scrollTop":$(".cl").offset().top},600)
+    //     } else {
+    //         // 휠올렸을때
+    //         $("html,body").stop().animate({"scrollTop":$(".banner").offset().top},600)
+    //         // console.log('Scrolling up in ' + this.id);
+    //     }
+    //     // Prevent default scrolling behavior
+    //     event.preventDefault();
+    // });
 
-    $('.album').on('wheel', function(event){
-        var originalEvent = event.originalEvent;
-        var delta = originalEvent.deltaY || -originalEvent.wheelDelta;
+    // $('.album').on('wheel', function(event){
+    //     var originalEvent = event.originalEvent;
+    //     var delta = originalEvent.deltaY || -originalEvent.wheelDelta;
 
-        if (delta > 0) {
-            event.preventDefault();
-            // 휠내렸을때
-            // console.log('Scrolling down in ' + this.id);
-            $("html,body").stop().animate({"scrollTop":$(".news").offset().top},600)
-        } else {
-            // 휠올렸을때
-            // $("html,body").stop().animate({"scrollTop":$(".artist").offset().top},600)
-            // console.log('Scrolling up in ' + this.id);
-        }
-        // Prevent default scrolling behavior
+    //     if (delta > 0) {
+    //         event.preventDefault();
+    //         // 휠내렸을때
+    //         // console.log('Scrolling down in ' + this.id);
+    //         $("html,body").stop().animate({"scrollTop":$(".news").offset().top},600)
+    //     } else {
+    //         // 휠올렸을때
+    //         // $("html,body").stop().animate({"scrollTop":$(".artist").offset().top},600)
+    //         // console.log('Scrolling up in ' + this.id);
+    //     }
+    //     // Prevent default scrolling behavior
         
-    });
+    // });
 
-    $('.news').on('wheel', function(event){
-        var originalEvent = event.originalEvent;
-        var delta = originalEvent.deltaY || -originalEvent.wheelDelta;
+    // $('.news').on('wheel', function(event){
+    //     var originalEvent = event.originalEvent;
+    //     var delta = originalEvent.deltaY || -originalEvent.wheelDelta;
 
-        if (delta > 0) {
-            // 휠내렸을때
-            // console.log('Scrolling down in ' + this.id);
-            // $("html,body").stop().animate({"scrollTop":$(".album").offset().top},600)
-        } else {
-            // 휠올렸을때
-            $("html,body").stop().animate({"scrollTop":$(".album").offset().top},600)
-            // console.log('Scrolling up in ' + this.id);
-        }
-        // Prevent default scrolling behavior
-        event.preventDefault();
-    });
+    //     if (delta > 0) {
+    //         // 휠내렸을때
+    //         // console.log('Scrolling down in ' + this.id);
+    //         // $("html,body").stop().animate({"scrollTop":$(".album").offset().top},600)
+    //     } else {
+    //         // 휠올렸을때
+    //         $("html,body").stop().animate({"scrollTop":$(".album").offset().top},600)
+    //         // console.log('Scrolling up in ' + this.id);
+    //     }
+    //     // Prevent default scrolling behavior
+    //     event.preventDefault();
+    // });
     
     
 

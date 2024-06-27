@@ -819,15 +819,31 @@ footer>.inner{
         background: #000;
         color: #fff;
     }
+    .artistLeft{
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .tap_artist {
+        width: auto;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        display: flex;
+        flex-wrap:nowrap;
+        padding:unset;
+        transform: translateX(-50%);
+    }
     .artistRight {
-        width: 65%;
-        height: 100vh;
+        width: 100%;
+        height: auto;
         position: absolute;
         display: flex;
-        align-items: center;
-        top: 0;
+        /* align-items: center; */
+        bottom: 100px;
         right: 0;
         overflow: hidden;
+        top: unset;
     }
     .station_artist{
         width: 100%;
@@ -850,8 +866,6 @@ footer>.inner{
         box-sizing: content-box;
         align-items: center;
     }
-
-
     .station_artist .carousel_btn{
         position: relative;
     }
