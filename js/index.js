@@ -184,8 +184,18 @@ $(document).ready(function(){
 
 
     // carousel 슬라이드 영역
+    let deviceWidth = window.innerWidth
     let carousel_count = 0;
     let per_deg = 360 / 7;
+
+    if(deviceWidth>=1820){
+
+    }else if(deviceWidth<1024 && deviceWidth>768){
+
+    }else{
+
+    }
+
     // carousel 돌아감 origin(0,0)
     function rotateCarousel(count){
         $(".carousel").css("transform",`rotate(${-count * per_deg}deg)`);
@@ -322,7 +332,6 @@ $(document).ready(function(){
             {
                 idx = idx - 10
             }
-            console.log(idx)
             $(`[data-swiper-slide-index='${idx}']`).addClass("on")
     })
 
