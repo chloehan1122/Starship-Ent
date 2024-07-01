@@ -5,7 +5,12 @@ body, html {
     margin: 0;
     padding: 0;
     width: 100%;
+    scrollbar-gutter: stable;
 }
+body.disabled{
+    overflow: hidden;
+    height: 100vh;
+}   
 .inner_content{
     width: 1200px;
 }
@@ -16,7 +21,7 @@ body, html {
 .title{
     position: absolute;
     top: 100px;
-    left: calc(50%);
+    left: 50%;
     transform: translateX(-50%);
 }
 h1.fontMain{
@@ -83,14 +88,15 @@ header.on:before{
     display: block;
     position: relative;
 }
-.lang_link{
+.lang_link {
     overflow: hidden;
     position: absolute;
-    top: 50px;
-    left: 10px;
+    top: 45px;
+    left: 5px;
     color: #fff;
     height: 0;
     transition: all 0.5s ease 0s;
+    font-size: 13px;
 }
 .langs:hover .lang_link{
     height: 100px;
@@ -272,6 +278,7 @@ header.on:before{
 
 /* 아티스트 영역 */
 .artist_mo{display: none;}
+.artist_mo2{display: none;}
 .artist{
     width: 100%;
     height: 100vh;
@@ -576,6 +583,7 @@ header.on:before{
 
 
 /* 앨범 영역 */
+.album_mo{display: none;}
 .album{
     width: 100%;
     height: 100vh;
@@ -702,6 +710,7 @@ header.on:before{
 }
 
 /* 뉴스(공지사항) 영역 */
+.news_mo{display: none;}
 .news{
     width: 100%;
     height: 100vh;
@@ -811,6 +820,7 @@ footer>.inner{
 in between pc and tab -> carousel 이슈 */
 @media (min-width:1024px) and (max-width:1820px){
     .artist{display: none;}
+    .artist_mo2{display: none;}
     .artist_mo{
         display: flex;
         position: relative;
@@ -915,10 +925,13 @@ in between pc and tab -> carousel 이슈 */
         top: 70px;
         left: 65%;
     }
+    .album_mo{display: none;}
+    .news_mo{display: none;}
 }
 /* tablet */
 @media (min-width:768px) and (max-width:1024px){
     .artist{display: none;}
+    .artist_mo2{display: none;}
     .artist_mo{
         display: flex;
         position: relative;
@@ -1048,6 +1061,8 @@ in between pc and tab -> carousel 이슈 */
         top: 70px;
         left: 65%;
     }
+    .album_mo{display: none;}
+    .news_mo{display: none;}
 }
 
 /* mobile */
@@ -1074,39 +1089,38 @@ in between pc and tab -> carousel 이슈 */
         width: 50%;
     }
     .lang {
-        display: none;
-        /* color: #fff;
-        margin-right: 20px;
+        color: #fff;
+        margin-right: 10px;
         border: 1px solid white;
-        padding: 10px;
+        padding: 5px;
         border-radius: 50%;
-        display: flex;
+        display: block;
         position: relative;
-        width: 10px;
-        height: 10px;
-        font-size: 14px;
-        justify-content: center;
-        align-items: center; */
+        font-size: 13px;
     }
-    a.btn_gnb{
+    a.btn_gnb {
         display: block;
         width: 25px;
-        margin-right: 15px;
+        padding-right: 20px;
+        padding-top: 5px;
     }
     .station_btn{display: none;}
     .artist{display: none;}
-    .artist_mo{
+    .artist_mo{display: none;}
+    .artist_mo2 {
         display: flex;
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        background: #000;
-        color: #fff;
-    }
-    .artistLeft{
+        flex-direction: column;
         position: relative;
         width: 100%;
         height: auto;
+        background: #000;
+        color: #fff;
+    }
+    .artistLeft {
+        width: 100%;
+        height: 200px;
+        border: 1px solid red;
+        margin-top: 150px;
     }
     header:before{
         content: "";
@@ -1126,36 +1140,65 @@ in between pc and tab -> carousel 이슈 */
     .gnb_list {
         height: 0;
         position: fixed;
-        top: 120px;
+        top: 100px;
         left: 0;
         color: #fff;
-        display: grid;
-        /* justify-content: space-between; */
+        display: block;
         transition: all 0.2s ease 0s;
         overflow: hidden;
-        grid-template-columns: repeat(4, 1fr);
         width: 100%;
         padding: 0 50px;
         box-sizing: border-box;
-        grid-auto-rows: max-content;
-        row-gap: 20px;
     }
     .gnb_list.on {
-        height: calc(100vh - 120px);
+        height: calc(100vh - 50px);
     }
-    .gnb_list .long{
-        grid-column: span 2;
+    .gnb_list>li{
+        position: relative;
+        z-index: 100;
+    }
+    .gnb_list>li>a {
+        width: 150px;
+        height: 30px;
+        display: flex;
+        justify-content: flex-start;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .gnb_list>li>ul{
+        border: 1px solid red;
+        display: block;
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+        overflow: hidden;
+        transition: all .5s ease 0s;
+    }
+    .gnb_list>li>ul>li>a {
+        width: 150px;
+        height: 30px;
+        display: flex;
+        font-weight: 300;
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+    .gnb_list>li:hover>ul{
+        height: auto;
+        opacity: 1;
+        pointer-events: auto;
+        margin-bottom: 20px;
     }
     .tap_artist {
         width: 100%;
         position: absolute;
-        top: 20%;
+        top: 50%;
         left: 50%;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         padding: unset;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
     }
     .tap_artist li {
         flex: none;
@@ -1181,28 +1224,23 @@ in between pc and tab -> carousel 이슈 */
     }
     .artistRight {
         width: 100%;
-        /* height: auto; */
-        position: absolute;
-        display: flex;
+        height: auto;
+        position:static;
+        /* display: grid; */
         align-items: center;
-        bottom: 0;
-        right: 0;
+        /* bottom: 0; */
+        /* right: 0; */
         overflow: hidden;
-        top: 100px;
+        top: 227px;
     }
     .station_artist{
         width: 100%;
         height: auto;
     }
-    .station_artist.swiper {
-        overflow: visible;
-    }
-    .train_artist{
-        /* display: flex; */
-    }
-    .train_artist>li img{
-        transform: scale(0.8);
-        transition: transform 0.5s ease 0s;
+    .train_artist {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
     .train_artist>li.on img{
         padding: 10px;
@@ -1210,6 +1248,11 @@ in between pc and tab -> carousel 이슈 */
         border: 1px solid #ffa200;
         border-radius: 50%;
         transition: transform 0.5s ease 0s;
+    }
+    .train_artist>li.sibling img {
+        opacity: 0.5;
+        transform: scale(0.8);
+        transition: opacity 0.5s ease 0s;
     }
     .train_artist .swiper-wrapper {
         position: relative;
@@ -1242,4 +1285,50 @@ in between pc and tab -> carousel 이슈 */
         top: 70px;
         left: 65%;
     } */
+    .album{display: none;}
+    .album_mo {
+        display: block;
+        width: 100%;
+        height: 100vh;
+        background: #000;
+        color: #fff;
+        position: relative;
+        padding-top: 200px;
+    }
+    .album_list{
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+    .album_cover{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 20px;
+        grid-auto-rows: 25%;
+    }
+    .album_cover>li {
+        display: block;
+        position: relative;
+        z-index: 100;
+    }
+    .news{display: none;}
+    .news_mo {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding-top: 200px;
+    }
+    .news_mo .fontMain{
+        color: #000;
+    }
+    .news_list {
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+        display: grid;
+        align-items: center;
+    }
 }

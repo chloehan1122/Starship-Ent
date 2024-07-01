@@ -12,6 +12,10 @@ $(document).ready(function(){
         event.preventDefault();
     });
     
+    // gnb hover 스크롤 방지
+    $(".btn_gnb").click(function(){
+        $("body").toggleClass("disabled");
+    })
 
     // scrollTop
     let scrTop = 0;
@@ -34,6 +38,14 @@ $(document).ready(function(){
             $(".gnb .lang").css("color",`#fff`).css("border",`1px solid #fff`)
         }
 
+    // artist_mo2 마우스 호버 효과
+    $(document).ready(function() {
+        $('.train_artist>li').click(function() {
+            $('.train_artist>li').removeClass('on')
+            $(this).addClass('on').siblings().removeClass('on').addClass('sibling');
+            // $(this).siblings().removeClass('sibling');
+        });
+    });
 
         // 스크롤 애니메이션
         let distance = scrTop - building_top;
