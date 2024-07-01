@@ -50,16 +50,18 @@ header{
 header:before{
     content: "";
     width: 100%;
-    height: 600px;
+    height: 0;
     background:#000000ca;
+    overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
     z-index: -1;
-    display: none;
+    display: block;
+    transition: all .5s ease 0s;
 }
 header.on:before{
-    display: block;
+    height: 600px;
 }
 .logo{
     display: flex;
@@ -152,28 +154,12 @@ header.on:before{
     font-weight: 300;
     justify-content: center;
 }
+.gnb_list>li>ul>li>a:hover{
+    font-weight: 500;
+    color: #ffa200;
+}
 
 /* 배너영역 */
-/* .video-background{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-}
-.video-background iframe{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none; 
-    object-fit: cover;
-    hahahahaha
-} */
 .banner{
     width: 100%;
     height: 100vh;
@@ -185,7 +171,7 @@ header.on:before{
     position: relative;
     overflow: hidden;
 }
-.blackcover{
+/* .blackcover{
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -193,7 +179,7 @@ header.on:before{
     left: 0;
     background: #00000075;
     z-index: 1;
-}
+} */
 .train{
     width: 300%;
     height: 100vh;
@@ -203,6 +189,16 @@ header.on:before{
 .train>li{
     flex: 1;
     position: relative;
+}
+.train>li::after{
+    content: "";
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #00000075;
+    z-index: 1; 
 }
 .train>li video{
     width: 100%;
@@ -234,7 +230,7 @@ header.on:before{
     right: 120px;
 }
 .banner_info{
-    width: 20%;
+    width: 25%;
     height: 20%;
     position: absolute;
     bottom: 0;
@@ -811,7 +807,9 @@ footer>.inner{
     width: 10%;
 }
 
-@media (min-width:768px) and (max-width:1820px){
+/* 22222222222222
+in between pc and tab -> carousel 이슈 */
+@media (min-width:1024px) and (max-width:1820px){
     .artist{display: none;}
     .artist_mo{
         display: flex;
@@ -821,12 +819,25 @@ footer>.inner{
         background: #000;
         color: #fff;
     }
-    .station_btn{display: none;}
+    /* .station_btn{display: none;} */
     .artistLeft{
         position: relative;
         width: 100%;
         height: auto;
     }
+    /* .gnb_list {
+        height: 0;
+        position: fixed;
+        top: 100px;
+        left: 0;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        transition: all 0.2s ease 0s;
+        overflow: hidden;
+        border: 1px solid;
+        width: 100%;
+    } */
     .tap_artist {
         width: auto;
         position: absolute;
@@ -850,7 +861,7 @@ footer>.inner{
         bottom: 0;
         right: 0;
         overflow: hidden;
-        top: 195px;
+        top: 230px;
     }
     .station_artist{
         width: 100%;
@@ -916,7 +927,45 @@ footer>.inner{
         background: #000;
         color: #fff;
     }
-    .station_btn{display: none;}
+    header:before{
+        content: "";
+        width: 100%;
+        background:#000000ca;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: none;
+        /* transition: all .5s ease 0s; */
+    }
+    header.on:before {
+        display: block;
+        height: 100vh;
+    }
+    .gnb_list {
+        height: 0;
+        position: fixed;
+        top: 120px;
+        left: 0;
+        color: #fff;
+        display: grid;
+        /* justify-content: space-between; */
+        transition: all 0.2s ease 0s;
+        overflow: hidden;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+        padding: 0 50px;
+        box-sizing: border-box;
+        grid-auto-rows: max-content;
+        row-gap: 20px;
+    }
+    .gnb_list.on {
+        height: calc(100vh - 120px);
+    }
+    .gnb_list .long{
+        grid-column: span 2;
+    }
+    /* .station_btn{display: none;} */
     .artistLeft{
         position: relative;
         width: 100%;
@@ -1058,6 +1107,44 @@ footer>.inner{
         position: relative;
         width: 100%;
         height: auto;
+    }
+    header:before{
+        content: "";
+        width: 100%;
+        background:#000000ca;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: none;
+        /* transition: all .5s ease 0s; */
+    }
+    header.on:before {
+        display: block;
+        height: 100vh;
+    }
+    .gnb_list {
+        height: 0;
+        position: fixed;
+        top: 120px;
+        left: 0;
+        color: #fff;
+        display: grid;
+        /* justify-content: space-between; */
+        transition: all 0.2s ease 0s;
+        overflow: hidden;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+        padding: 0 50px;
+        box-sizing: border-box;
+        grid-auto-rows: max-content;
+        row-gap: 20px;
+    }
+    .gnb_list.on {
+        height: calc(100vh - 120px);
+    }
+    .gnb_list .long{
+        grid-column: span 2;
     }
     .tap_artist {
         width: 100%;

@@ -184,18 +184,8 @@ $(document).ready(function(){
 
 
     // carousel 슬라이드 영역
-    let deviceWidth = window.innerWidth
     let carousel_count = 0;
     let per_deg = 360 / 7;
-
-    if(deviceWidth>=1820){
-
-    }else if(deviceWidth<1024 && deviceWidth>768){
-
-    }else{
-
-    }
-
     // carousel 돌아감 origin(0,0)
     function rotateCarousel(count){
         $(".carousel").css("transform",`rotate(${-count * per_deg}deg)`);
@@ -270,17 +260,50 @@ $(document).ready(function(){
     });
 
     // 아티스트 슬라이드 탭/모바일 버전
-    let swiper1 = new Swiper(".station_artist", {
+    let swiper1 = new Swiper("#station_artist", {
         slidesPerView: 2.5,
         // spaceBetween: 30,
         centeredSlides: true,
         loop: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-      });
+        on: {
+            slideChange: function(){
+                let activeNum = this.activeIndex    //현재 중앙으로온 이미지의 배열순서번호 ( 0 - 6)
+                let activeNum2 = $(".train_ar_mo .swiper-slide").eq(activeNum).attr('aria-label');
+                //console.log(activeNum,activeNum2);
+                let imgArray = activeNum2.split('/');   //순서 번호 배열로 저장 (0: 1, 1: 7)
+                $(".tap_ar_mo>li").removeClass("on")    //버튼 전체 on 빼기
+                $(".tap_ar_mo>li").eq(Number(imgArray[0])-1).addClass("on") //순번상의 버튼에 on 넣기
 
+
+                
+                $(".train_ar_mo .swiper-slide").removeClass("on")   //이미지전체 on 끄기
+                $(".train_ar_mo .swiper-slide").eq(activeNum).addClass("on")  //중앙이미지 on 추가
+               
+                //let activeNum2 = $(".train_ar_mo .swiper-slide").eq(activeNum).attr('aria-label');  //선택된 중앙이미지의 순서 번호 읽기 (1/7...)
+                
+
+            }
+        }
+        // navigation: {
+        //     nextEl: ".swiper-button-next",
+        //     prevEl: ".swiper-button-prev",
+        //   },
+      });
+    $(".tap_ar_mo>li").click(function(e){
+        e.preventDefault()
+        let clickedIndexMo = $(this).index()+1;   //0-6 --> 1-7 버튼 배열상의 번호
+        console.log(clickedIndexMo)
+        //하부의 이미지배열에서 바튼의 번호와 일치하는 이미지 찾기
+        //처음에는 이미지가 6/7,7/7,1/7.....5/7
+        //스라이딩을 하면 이게 바뀐다 예를들면 2/7,3/7....7/7,1/7
+        $(".train_ar_mo .swiper-slide").each(function (index, item) {
+            let activeNum2 = $(item).attr('aria-label');
+            let imgArray = activeNum2.split('/');
+            if(Number(imgArray[0]) == clickedIndexMo) {
+                swiper1.slideTo(index,1000)
+            }
+        });     
+    })
 
 
     // 앨범 슬라이드 swiper
@@ -332,6 +355,7 @@ $(document).ready(function(){
             {
                 idx = idx - 10
             }
+            console.log(idx)
             $(`[data-swiper-slide-index='${idx}']`).addClass("on")
     })
 
